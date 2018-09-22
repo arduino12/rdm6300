@@ -11,10 +11,10 @@
   "authors":
   [
     {
-        "name": "Arad Eizen",
-        "email": "https://github.com/arduino12",
-        "url": "https://github.com/arduino12"
-		"maintainer": true
+      "name": "Arad Eizen",
+      "email": "https://github.com/arduino12",
+      "url": "https://github.com/arduino12",
+	  "maintainer": true
     }
   ],
   "frameworks": "arduino",
