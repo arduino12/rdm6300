@@ -1,0 +1,26 @@
+#######################################
+# Syntax Coloring Map Rdm6300
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+Rdm6300	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+begin		KEYWORD2
+update		KEYWORD2
+get_tag_id	KEYWORD2
+is_tag_near	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+RDM6300_PACKET_SIZE		LITERAL1
+RDM6300_PACKET_BEGIN	LITERAL1
+RDM6300_PACKET_END		LITERAL1
+RDM6300_NEXT_READ_MS	LITERAL1
+RDM6300_BAUDRATE		LITERAL1
