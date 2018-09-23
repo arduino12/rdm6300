@@ -3,7 +3,7 @@
  * Arad Eizen (https://github.com/arduino12) 23/09/18.
  */
 
-#include "RDM6300.h"
+#include "rdm6300.h"
 #include <Arduino.h>
 
 
