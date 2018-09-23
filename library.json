@@ -1,6 +1,6 @@
 {
   "name": "rdm6300",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "keywords": "rdm6300, rfid",
   "description": "A simple library to interface with rdm6300 rfid reader.",
   "repository":
