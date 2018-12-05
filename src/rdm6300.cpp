@@ -7,11 +7,11 @@
 #include <Arduino.h>
 
 
-void Rdm6300::begin(int rx_pin)
+void Rdm6300::begin(int rx_pin, uint8_t uart_nr)
 {
 	/* init serial port to rdm6300 baud, without TX, and 20ms read timeout */
 #ifdef ARDUINO_ARCH_ESP32
-	_serial = new HardwareSerial(1);
+	_serial = new HardwareSerial(uart_nr);
 	_serial->begin(RDM6300_BAUDRATE, SERIAL_8N1, rx_pin, -1);
 #else
 	_serial = new SoftwareSerial(rx_pin, -1);
