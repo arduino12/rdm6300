@@ -10,14 +10,40 @@
 void Rdm6300::begin(int rx_pin, uint8_t uart_nr)
 {
 	/* init serial port to rdm6300 baud, without TX, and 20ms read timeout */
-#ifdef ARDUINO_ARCH_ESP32
-	_serial = new HardwareSerial(uart_nr);
-	_serial->begin(RDM6300_BAUDRATE, SERIAL_8N1, rx_pin, -1);
-#else
-	_serial = new SoftwareSerial(rx_pin, -1);
-	_serial->begin(RDM6300_BAUDRATE);
+	end();
+#if defined(ARDUINO_ARCH_ESP32)
+	_stream = _hardware_serial = new HardwareSerial(uart_nr);
+	_hardware_serial->begin(RDM6300_BAUDRATE, SERIAL_8N1, rx_pin, -1);
+#elif defined(ARDUINO_ARCH_ESP8266)
+	if (rx_pin == 13) {
+		_stream = _hardware_serial = &Serial;
+		_hardware_serial->begin(RDM6300_BAUDRATE, SERIAL_8N1, SERIAL_RX_ONLY);
+		if (uart_nr)
+			_hardware_serial->swap();
+	}
 #endif
-	_serial->setTimeout(20);
+#ifdef RDM6300_SOFTWARE_SERIAL
+	if (!_hardware_serial) {
+		_stream = _software_serial = new SoftwareSerial(rx_pin, -1);
+		_software_serial->begin(RDM6300_BAUDRATE);
+	}
+#endif
+	if (!_stream)
+		return;
+	_stream->setTimeout(RDM6300_READ_TIMEOUT);
+}
+
+void Rdm6300::end()
+{
+	_stream = NULL;
+#ifdef RDM6300_HARDWARE_SERIAL
+	if (_hardware_serial)
+		_hardware_serial->end();
+#endif
+#ifdef RDM6300_SOFTWARE_SERIAL
+	if (_software_serial)
+		_software_serial->end();
+#endif
 }
 
 bool Rdm6300::update(void)
@@ -26,15 +52,18 @@ bool Rdm6300::update(void)
 	uint32_t tag_id;
 	uint8_t checksum;
 
-	if (!_serial->available())
+	if (!_stream)
+		return false;
+
+	if (!_stream->available())
 		return false;
 
 	/* if a packet doesn't begin with the right byte, remove that byte */
-	if (_serial->peek() != RDM6300_PACKET_BEGIN && _serial->read())
+	if (_stream->peek() != RDM6300_PACKET_BEGIN && _stream->read())
 		return false;
 
 	/* if read a packet with the wrong size, drop it */
-	if (RDM6300_PACKET_SIZE != _serial->readBytes(buff, RDM6300_PACKET_SIZE))
+	if (RDM6300_PACKET_SIZE != _stream->readBytes(buff, RDM6300_PACKET_SIZE))
 		return false;
 
 	/* if a packet doesn't end with the right byte, drop it */

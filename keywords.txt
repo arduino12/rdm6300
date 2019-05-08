@@ -12,6 +12,7 @@ Rdm6300	KEYWORD1
 # Methods and Functions (KEYWORD2)
 #######################################
 begin		KEYWORD2
+end			KEYWORD2
 update		KEYWORD2
 get_tag_id	KEYWORD2
 is_tag_near	KEYWORD2
