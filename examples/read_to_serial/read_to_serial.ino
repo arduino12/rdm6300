@@ -1,17 +1,17 @@
 /*
  * A simple example to interface with rdm6300 rfid reader.
  *
- * Connect the rdm6300 to VCC=5V, GND=GND, TX=any GPIO (this case GPIO_2)
+ * Connect the rdm6300 to VCC=5V, GND=GND, TX=any GPIO (this case GPIO-04)
  * Note: for ESP* or other 3.3V based microcontroller,
  *       you must divide the TX out of the rdm6300 to the 3.3V levels,
  *       I used the following resistor divider:
  *       GND--<2K resistor>--GPIO_2--<1K resistor>--TX(rdm6300).
  *
- * Arad Eizen (https://github.com/arduino12) 23/09/18.
+ * Arad Eizen (https://github.com/arduino12) 23/09/18, 08/05/19.
  */
 #include <rdm6300.h>
 
-#define RDM6300_RX_PIN 2
+#define RDM6300_RX_PIN 4
 #define READ_LED_PIN 13
 
 Rdm6300 rdm6300;
@@ -25,7 +25,7 @@ void setup()
 
 	rdm6300.begin(RDM6300_RX_PIN);
 
-	Serial.println("Place RFID tag near the rdm6300...");
+	Serial.println("\nPlace RFID tag near the rdm6300...");
 }
 
 void loop()

@@ -40,7 +40,6 @@ class Rdm6300
 		uint32_t get_tag_id(void);
 		bool is_tag_near(void);
 	private:
-		void _begin(void);
 #ifdef RDM6300_HARDWARE_SERIAL
 		HardwareSerial *_hardware_serial = NULL;
 #endif

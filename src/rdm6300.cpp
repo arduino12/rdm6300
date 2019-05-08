@@ -1,6 +1,6 @@
 /*
  * A simple library to interface with rdm6300 rfid reader.
- * Arad Eizen (https://github.com/arduino12) 23/09/18.
+ * Arad Eizen (https://github.com/arduino12) 23/09/18, 08/05/19.
  */
 
 #include "rdm6300.h"
@@ -23,7 +23,7 @@ void Rdm6300::begin(int rx_pin, uint8_t uart_nr)
 	}
 #endif
 #ifdef RDM6300_SOFTWARE_SERIAL
-	if (!_hardware_serial) {
+	if (!_stream) {
 		_stream = _software_serial = new SoftwareSerial(rx_pin, -1);
 		_software_serial->begin(RDM6300_BAUDRATE);
 	}
