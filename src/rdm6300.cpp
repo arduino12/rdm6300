@@ -89,12 +89,12 @@ bool Rdm6300::update(void)
 	/* if a new tag appears- return it */
 	if (_last_tag_id != tag_id) {
 		_last_tag_id = tag_id;
-		_next_read_ms = 0;
+		_last_read_ms = 0;
 	}
 	/* if the old tag is still here set tag_id to zero */
-	if (_next_read_ms > millis())
+	if (is_tag_near())
 		tag_id = 0;
-	_next_read_ms = millis() + RDM6300_NEXT_READ_MS;
+	_last_read_ms = millis();
 
 	_tag_id = tag_id;
 	return tag_id;
@@ -102,7 +102,7 @@ bool Rdm6300::update(void)
 
 bool Rdm6300::is_tag_near(void)
 {
-	return _next_read_ms > millis();
+	return millis() - _last_read_ms < RDM6300_NEXT_READ_MS;
 }
 
 uint32_t Rdm6300::get_tag_id(void)
