@@ -49,7 +49,7 @@ class Rdm6300
 		Stream *_stream = NULL;
 		uint32_t _tag_id = 0;
 		uint32_t _last_tag_id = 0;
-		uint32_t _next_read_ms = 0;
+		uint32_t _last_read_ms = 0;
 };
 
 #endif
