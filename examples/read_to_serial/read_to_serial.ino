@@ -2,13 +2,12 @@
  * A simple example to interface with rdm6300 rfid reader.
  *
  * Connect the rdm6300 to VCC=5V, GND=GND, TX=any GPIO (this case GPIO-04)
- * Note: for ESP* or other 3.3V based microcontroller,
- *       you must divide the TX out of the rdm6300 to the 3.3V levels,
- *       I used the following resistor divider:
- *       GND--<2K resistor>--GPIO_2--<1K resistor>--TX(rdm6300).
+ * Note that the rdm6300's TX line is 3.3V level,
+ * so it's save to use with both AVR* and ESP* microcontrollers.
  *
- * Arad Eizen (https://github.com/arduino12) 23/09/18, 08/05/19.
+ * Arad Eizen (https://github.com/arduino12) 23/09/18, 08/05/19, 09/06/19.
  */
+
 #include <rdm6300.h>
 
 #define RDM6300_RX_PIN 4

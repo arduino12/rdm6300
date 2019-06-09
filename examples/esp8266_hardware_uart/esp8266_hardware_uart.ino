@@ -16,16 +16,13 @@
  *     | GPIO-01 | TX      |         | This is TXD0, connect it to GPIO-02 |
  *     | GPIO-02 | D4      |         | This is TXD1, connect it to GPIO-01 |
  *     | GPIO-03 | RX      |         | Leave it unconnected for flashing   |
- *     | GPIO-13 | D7      | TX      | Via voltage divide / level shifter  |
- *     |         | VU (5V) | VCC     |                                     |
+ *     | GPIO-13 | D7      | TX      | TX level is same 3.3V as esp8266    |
+ *     |         | VU (5V) | VCC     | The rdm6300 must be powered with 5V |
  *     | GND     | GND     | GND     |                                     |
  *
  *     * GPIO-01 to GPIO-02 is for debug terminal output.
- *     * You must divide the TX out of the rdm6300 to the 3.3V levels,
- *       I used the following resistor divider:
- *       GND--<2K resistor>--GPIO-13=D7--<1K resistor>--TX(rdm6300).
  *
- * Arad Eizen (https://github.com/arduino12) 08/05/19.
+ * Arad Eizen (https://github.com/arduino12) 08/05/19, 09/06/19.
  */
 
 #include <rdm6300.h>

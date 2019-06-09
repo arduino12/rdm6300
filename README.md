@@ -13,7 +13,6 @@ A simple library to interface with RDM6300 RFID reader.
 * RDM6300 module with matching antenna.
 * 125KHz RFID tags.
 * Microcontroller (arduino, esp8266, esp32...).
-* Jump-Wires (Resistors of 1K and 2K if you are using 3.3V based microcontroller).
 
 ![rdm6300_connections](../master/doc/rdm6300_connections.png "rdm6300_connections")
 
@@ -26,5 +25,5 @@ A simple RFID to serial reciver example can be found at:
 * ```bool update()``` - Updates the internal values by reading from the RDM6300, returns true on tag detection, must be called repeatedly!
 * ```uint32_t get_tag_id()``` - Returns the last tag id read by ```update```- can be called only once after ```update```.
 * ```bool is_tag_near()``` -  Returns whether a tag is currently held near the antenna- can be called many times after ```update```.
-## enjoy!
+## Enjoy!
 A.E.TECH
