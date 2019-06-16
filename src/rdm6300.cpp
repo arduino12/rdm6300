@@ -33,6 +33,15 @@ void Rdm6300::begin(int rx_pin, uint8_t uart_nr)
 	_stream->setTimeout(RDM6300_READ_TIMEOUT);
 }
 
+void Rdm6300::begin(Stream *stream)
+{
+	end();
+	_stream = stream;
+	if (!_stream)
+		return;
+	_stream->setTimeout(RDM6300_READ_TIMEOUT);
+}
+
 void Rdm6300::end()
 {
 	_stream = NULL;

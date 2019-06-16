@@ -35,6 +35,7 @@ class Rdm6300
 {
 	public:
 		void begin(int rxPin, uint8_t uart_nr=1);
+		void begin(Stream *stream);
 		void end(void);
 		bool update(void);
 		uint32_t get_tag_id(void);
