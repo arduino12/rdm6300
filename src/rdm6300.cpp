@@ -7,6 +7,14 @@
 #include <Arduino.h>
 
 
+void Rdm6300::begin(Stream *stream)
+{
+	_stream = stream;
+	if (!_stream)
+		return;
+	_stream->setTimeout(RDM6300_READ_TIMEOUT);
+}
+
 void Rdm6300::begin(int rx_pin, uint8_t uart_nr)
 {
 	/* init serial port to rdm6300 baud, without TX, and 20ms read timeout */
@@ -28,9 +36,7 @@ void Rdm6300::begin(int rx_pin, uint8_t uart_nr)
 		_software_serial->begin(RDM6300_BAUDRATE);
 	}
 #endif
-	if (!_stream)
-		return;
-	_stream->setTimeout(RDM6300_READ_TIMEOUT);
+	begin(_stream);
 }
 
 void Rdm6300::end()

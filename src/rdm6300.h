@@ -34,6 +34,7 @@
 class Rdm6300
 {
 	public:
+		void begin(Stream *stream);
 		void begin(int rxPin, uint8_t uart_nr=1);
 		void end(void);
 		bool update(void);
