@@ -1,6 +1,6 @@
 /*
  * A simple library to interface with rdm6300 rfid reader.
- * Arad Eizen (https://github.com/arduino12) 23/09/18, 08/05/19.
+ * Arad Eizen (https://github.com/arduino12).
  */
 
 #include "rdm6300.h"

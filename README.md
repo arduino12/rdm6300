@@ -6,6 +6,7 @@ A simple library to interface with RDM6300 RFID reader.
 * Using a single configurable GPIO pin.
 * Can tell if the tag is still near the antenna.
 * Both hardware and software uart (serial) support on esp8266.
+* Both SoftwareSerial and AltSoftSerial support.
 
 ## Getting Started
 
@@ -21,7 +22,8 @@ A simple RFID to serial reciver example can be found at:
 [```examples/read_to_serial/read_to_serial.ino```](examples/read_to_serial/read_to_serial.ino)
 
 #### API
-* ```void begin(int rxPin)``` - Initialize the object to use the given GPIO pin as RX from the RDM6300.
+* ```void begin(Stream \*stream)``` - Initialize the object to use the given stream to read from the RDM6300.
+* ```void begin(int rxPin, uint8_t uart_nr=1)``` - Initialize the object to use the given GPIO pin as RX from the RDM6300.
 * ```bool update()``` - Updates the internal values by reading from the RDM6300, returns true on tag detection, must be called repeatedly!
 * ```uint32_t get_tag_id()``` - Returns the last tag id read by ```update```- can be called only once after ```update```.
 * ```bool is_tag_near()``` -  Returns whether a tag is currently held near the antenna- can be called many times after ```update```.

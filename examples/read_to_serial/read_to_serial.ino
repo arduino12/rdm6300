@@ -5,7 +5,7 @@
  * Note that the rdm6300's TX line is 3.3V level,
  * so it's save to use with both AVR* and ESP* microcontrollers.
  *
- * Arad Eizen (https://github.com/arduino12) 23/09/18, 08/05/19, 09/06/19.
+ * Arad Eizen (https://github.com/arduino12).
  */
 
 #include <rdm6300.h>

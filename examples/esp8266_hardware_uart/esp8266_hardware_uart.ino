@@ -22,7 +22,7 @@
  *
  *     * GPIO-01 to GPIO-02 is for debug terminal output.
  *
- * Arad Eizen (https://github.com/arduino12) 08/05/19, 09/06/19.
+ * Arad Eizen (https://github.com/arduino12).
  */
 
 #include <rdm6300.h>

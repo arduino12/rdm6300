@@ -14,7 +14,7 @@
  *     | Wiring-S         |      6 |            4 |            5 |
  *     | Sanguino         |     14 |           12 |           13 |
  *
- * Arad Eizen (https://github.com/arduino12) 08/05/19, 09/06/19, 22/06/19.
+ * Arad Eizen (https://github.com/arduino12).
  */
 
 #include <rdm6300.h>

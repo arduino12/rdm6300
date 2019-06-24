@@ -1,7 +1,7 @@
 /*
  * A simple library to interface with rdm6300 rfid reader.
  *
- * Arad Eizen (https://github.com/arduino12) 23/09/18, 08/05/19.
+ * Arad Eizen (https://github.com/arduino12).
  */
 
 #ifndef _RDM6300_h_
@@ -35,7 +35,7 @@ class Rdm6300
 {
 	public:
 		void begin(Stream *stream);
-		void begin(int rxPin, uint8_t uart_nr=1);
+		void begin(int rx_pin, uint8_t uart_nr=1);
 		void end(void);
 		bool update(void);
 		uint32_t get_tag_id(void);
