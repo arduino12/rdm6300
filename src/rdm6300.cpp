@@ -117,3 +117,8 @@ uint32_t Rdm6300::get_tag_id(void)
 	_tag_id = 0;
 	return tag_id;
 }
+
+void Rdm6300::listen(void)
+{
+	_serial->listen();
+}
