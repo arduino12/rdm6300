@@ -122,3 +122,8 @@ void Rdm6300::listen(void)
 {
 	_serial->listen();
 }
+
+bool Rdm6300::isListening(void)
+{
+	return _serial->isListening();
+}
