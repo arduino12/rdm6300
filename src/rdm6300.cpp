@@ -118,12 +118,14 @@ uint32_t Rdm6300::get_tag_id(void)
 	return tag_id;
 }
 
+#ifdef RDM6300_SOFTWARE_SERIAL
 void Rdm6300::listen(void)
 {
-	_serial->listen();
+	_software_serial->listen();
 }
 
 bool Rdm6300::is_listening(void)
 {
-	return _serial->isListening();
+	return _software_serial->isListening();
 }
+#endif
