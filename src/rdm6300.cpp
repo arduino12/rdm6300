@@ -29,6 +29,9 @@ void Rdm6300::begin(int rx_pin, uint8_t uart_nr)
 		if (uart_nr)
 			_hardware_serial->swap();
 	}
+#elif defined(ARDUINO_ARCH_SAMD)
+	_stream = _hardware_serial = (uart_nr == 2 ? &Serial2 : &Serial1);
+	_hardware_serial->begin(RDM6300_BAUDRATE, SERIAL_8N1);
 #endif
 #ifdef RDM6300_SOFTWARE_SERIAL
 	if (!_stream) {

@@ -4,6 +4,8 @@
  * Connect the rdm6300 to VCC=5V, GND=GND, TX=any GPIO (this case GPIO-04)
  * Note that the rdm6300's TX line is 3.3V level,
  * so it's safe to use with both AVR* and ESP* microcontrollers.
+ * Note that on SAMD the RX_PIN is ignored, the default is Serial1 (pin0),
+ * but if specify rdm6300.begin(RDM6300_RX_PIN, 2); then Serial2 (pin30) is used.
  *
  * This example uses SoftwareSerial, please read its limitations here:
  * https://www.arduino.cc/en/Reference/softwareSerial

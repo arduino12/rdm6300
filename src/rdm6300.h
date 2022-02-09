@@ -7,16 +7,22 @@
 #ifndef _RDM6300_h_
 #define _RDM6300_h_
 
-#if defined(ARDUINO_ARCH_ESP32) || defined(ARDUINO_ARCH_ESP8266)
+#if defined(ARDUINO_ARCH_ESP32) || defined(ARDUINO_ARCH_ESP8266) || defined(ARDUINO_ARCH_SAMD)
 	#define RDM6300_HARDWARE_SERIAL
 #endif
 
-#if !defined(ARDUINO_ARCH_ESP32)
+#if !(defined(ARDUINO_ARCH_ESP32) || defined(ARDUINO_ARCH_SAMD))
 	#define RDM6300_SOFTWARE_SERIAL
 #endif
 
 #ifdef RDM6300_HARDWARE_SERIAL
-	#include <HardwareSerial.h>
+	#ifdef ARDUINO_ARCH_SAMD
+		#include <Uart.h>
+		#define HardwareSerial_t Uart
+	#else
+		#include <HardwareSerial.h>
+		#define HardwareSerial_t HardwareSerial
+	#endif
 #endif
 #ifdef RDM6300_SOFTWARE_SERIAL
 	#include <SoftwareSerial.h>
@@ -46,7 +52,7 @@ class Rdm6300
 #endif
 	private:
 #ifdef RDM6300_HARDWARE_SERIAL
-		HardwareSerial *_hardware_serial = NULL;
+		HardwareSerial_t *_hardware_serial = NULL;
 #endif
 #ifdef RDM6300_SOFTWARE_SERIAL
 		SoftwareSerial *_software_serial = NULL;

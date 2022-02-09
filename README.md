@@ -6,6 +6,7 @@ A simple library to interface with RDM6300 RFID reader.
 * Using a single configurable GPIO pin.
 * Can tell if the tag is still near the antenna.
 * Both hardware and software uart (serial) support on esp8266.
+* SAMD hardware uart (serial) support.
 * Both SoftwareSerial and [AltSoftSerial](https://github.com/PaulStoffregen/AltSoftSerial) support.
 
 ## Getting Started
