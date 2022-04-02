@@ -3,7 +3,7 @@ A simple library to interface with RDM6300 RFID reader.
 
 ## Features
 * Fast and single tag reading, even if it held near the antenna for a while.
-* Using a single given GPIO pin.
+* Using a single given GPIO pin or a `Stream`.
 * Can tell if the tag is still near the antenna.
 * Both hardware and software uart (serial) support on esp8266.
 * SAMD hardware uart (serial) support.
@@ -31,6 +31,6 @@ RDM6300 sends packet every 65ms when tag is near- better higher values for debou
 * ```uint32_t get_new_tag_id()``` - Returns the tag_id of a "new" near tag,  
 following calls will return 0 as long as the same tag is kept near.
 * ~~```bool update()``` - Updates the internal values must be called repeatedly!~~ **deprecated!**
-* ~~```bool is_tag_near()``` - Returns whether a tag is held near.~~ **deprecated!** use ```get_tag_id```.
+* ~~```bool is_tag_near()``` - Returns whether a tag is held near.~~ **deprecated!** use ```get_tag_id()```.
 ## Enjoy!
 A.E.TECH
