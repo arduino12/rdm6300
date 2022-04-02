@@ -28,10 +28,10 @@
 
 #include <rdm6300.h>
 
-#define RDM6300_1_RX_PIN	5
-#define RDM6300_1_LED_PIN	6
-#define RDM6300_2_RX_PIN	7
-#define RDM6300_2_LED_PIN	8
+#define RDM6300_1_RX_PIN	(5)
+#define RDM6300_1_LED_PIN	(6)
+#define RDM6300_2_RX_PIN	(7)
+#define RDM6300_2_LED_PIN	(8)
 
 Rdm6300 rdm6300_1;
 Rdm6300 rdm6300_2;
@@ -55,23 +55,23 @@ void setup()
 
 void loop()
 {
-	// checkout listening if needed
-	if (digitalRead(RDM6300_1_LED_PIN) == LOW
-			&& !rdm6300_1.is_listening()) {
+	/* listen to a "talking" RDM6300 if needed */
+	if (!digitalRead(RDM6300_1_LED_PIN) && !rdm6300_1.is_listening()) {
 		Serial.println("Switch to listening RDM6300_1");
 		rdm6300_1.listen();
 		current_rdm6300 = &rdm6300_1;
-	} else if (digitalRead(RDM6300_2_LED_PIN) == LOW
-			&& !rdm6300_2.is_listening()) {
+	}
+	else if (!digitalRead(RDM6300_2_LED_PIN) && !rdm6300_2.is_listening()) {
 		Serial.println("Switch to listening RDM6300_2");
 		rdm6300_2.listen();
 		current_rdm6300 = &rdm6300_2;
 	}
 
-	/* If you use rdm6300 with other devices, you had better set a TIMEOUT and run a while-loop to
-		make sure the tag can be read correctely. */
-	if (current_rdm6300->update()) 
+	/* if you use rdm6300 with other devices,
+	you had better set a TIMEOUT and run a while-loop to
+	make sure the tag can be read correctely */
+	if (current_rdm6300->get_new_tag_id()) 
 		Serial.println(current_rdm6300->get_tag_id(), HEX);
-	
+
 	delay(10);
 }

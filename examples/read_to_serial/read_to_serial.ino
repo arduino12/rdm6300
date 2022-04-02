@@ -13,6 +13,7 @@
  * Arad Eizen (https://github.com/arduino12).
  */
 
+#include <Arduino.h>
 #include <rdm6300.h>
 
 #define RDM6300_RX_PIN 4 // read the SoftwareSerial doc above! may need to change this pin to 10...
@@ -34,11 +35,13 @@ void setup()
 
 void loop()
 {
-	/* if non-zero tag_id, update() returns true- a new tag is near! */
-	if (rdm6300.update())
+	/* get_new_tag_id returns the tag_id of a "new" near tag,
+	following calls will return 0 as long as the same tag is kept near. */
+	if (rdm6300.get_new_tag_id())
 		Serial.println(rdm6300.get_tag_id(), HEX);
 
-	digitalWrite(READ_LED_PIN, rdm6300.is_tag_near());
+	/* get_tag_id returns the tag_id as long as it is near, 0 otherwise. */
+	digitalWrite(READ_LED_PIN, rdm6300.get_tag_id());
 
 	delay(10);
 }
