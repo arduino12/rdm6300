@@ -9,12 +9,10 @@
 
 #include <Arduino.h>
 
-#if defined(ARDUINO_ARCH_ESP32) || defined(ARDUINO_ARCH_ESP8266) || defined(ARDUINO_ARCH_SAMD)
-	#define RDM6300_HARDWARE_SERIAL
-#endif
-
-#if !(defined(ARDUINO_ARCH_ESP32) || defined(ARDUINO_ARCH_SAMD))
-	#define RDM6300_SOFTWARE_SERIAL
+#if defined(HWSERIAL1)
+    #define RDM6300_HARDWARE_SERIAL
+#elif
+    #define RDM6300_SOFTWARE_SERIAL
 #endif
 
 #ifdef RDM6300_HARDWARE_SERIAL
